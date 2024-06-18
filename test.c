@@ -46,15 +46,31 @@ void imprimirLista(struct Nodo* inicio) {
         printf("%c", actual->letra);
         if(actual->derecha != NULL){
             actual = actual->izquierda;
+            actual ->letra = NULL;
         }else if(actual->izquierda != NULL){
             actual = actual->derecha;
+            actual ->letra = NULL;
         }else{
             return;
         }
         
     }
 } 
-
+void ingresarLetraHoja(Arbol* rama,char entrada){
+    if(rama->letra != NULL){
+        //pregunta si el espacio esta ocupado
+    }
+    if(rama->letra < entrada){
+            rama ->derecha = crearNodo(entrada);
+        }
+    if(rama->letra > entrada){
+            rama ->izquierda = crearNodo(entrada);
+            
+        }
+    if(rama->letra == entrada){
+            rama ->izquierda = crearNodo(entrada);
+        }
+}
 
 int main(){
   //  printf("helllo wolrd");
@@ -66,16 +82,9 @@ int main(){
     arbolito ->derecha = NULL;
     arbolito ->izquierda = NULL;
     char entrada = 'c';
-
-    arbolitOriginal = arbolito;
-    if(arbolito->letra < entrada){
-        arbolito ->derecha = crearNodo(entrada);
-    }
-    entrada = 'a';
-    if(arbolito->letra > entrada){
-        arbolito ->izquierda = crearNodo(entrada);
-        
-    }
+    ingresarLetraHoja(arbolito,entrada);
+    ingresarLetraHoja(arbolito,'a');
+    ingresarLetraHoja(arbolito,'e');
     printf("%c",arbolito->letra);
         if(arbolito->izquierda!= NULL){
             imprimirLista(arbolito->izquierda);
